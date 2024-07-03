@@ -8,7 +8,7 @@ import express, {
   Router,
 } from 'express';
 import cors from 'cors';
-import { PORT } from './config';
+import { PORT } from './config/config';
 import { SampleRouter } from './routers/sample.router';
 
 export default class App {
