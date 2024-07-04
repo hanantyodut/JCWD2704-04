@@ -23,6 +23,7 @@
     "autoprefixer": "^10.4.19",
     "css": "^3.0.0",
     "cypress": "^13.6.2",
+    "axios": "^1.6.8",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
     "postcss": "^8.4.39",
