@@ -128,7 +128,7 @@ CREATE TABLE `skill_assessments` (
 
 -- CreateTable
 CREATE TABLE `questions` (
-    `id` INTEGER NOT NULL,
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
     `assessment_id` VARCHAR(191) NOT NULL,
     `question` TEXT NOT NULL,
 
@@ -137,7 +137,7 @@ CREATE TABLE `questions` (
 
 -- CreateTable
 CREATE TABLE `answers` (
-    `id` INTEGER NOT NULL,
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
     `question_id` INTEGER NOT NULL,
     `answer` TEXT NOT NULL,
     `status` ENUM('correct', 'wrong') NOT NULL DEFAULT 'wrong',

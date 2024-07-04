@@ -78,14 +78,15 @@ model Users {
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt
 
-  Career_history   Career_history[]
-  Certification    Certification[]
-  Education        Education[]
-  Skill            Skill[]
-  Assessment       Assessment[]
-  Skill_assessment Skill_assessment[]
-  User_answer      User_answer[]
-  Transaction      Transaction[]
+  Career_history  Career_history[]
+  Certification   Certification[]
+  Education       Education[]
+  Skill           Skill[]
+  Assessment      Assessment[]
+  User_assessment User_assessment[]
+  User_answer     User_answer[]
+  Transaction     Transaction[]
+  Job_regis       Job_regis[]
 
   @@index([username, fullname, email, role])
   @@map("users")
@@ -152,6 +153,7 @@ model Job {
   status       Post_status @default(published)
   posted_date  DateTime
   closing_date DateTime
+  Job_regis    Job_regis[]
 
   @@map("jobs")
 }
@@ -164,13 +166,16 @@ enum Regis_status {
 
 model Job_regis {
   job_id           String
-  admin_id         String
+  user_id          String
   application_date DateTime
   status           Regis_status @default(pending)
   interview_date   DateTime
   review           String       @db.Text
 
-  @@id([job_id, admin_id])
+  User Users @relation(fields: [user_id], references: [id])
+  Job  Job   @relation(fields: [job_id], references: [id])
+
+  @@id([job_id, user_id])
   @@map("job_registrations")
 }
 
@@ -180,20 +185,20 @@ model Assessment {
   title        String   @db.Text
   created_at   DateTime
 
-  user             Users              @relation(fields: [developer_id], references: [id])
-  Skill_assessment Skill_assessment[]
-  Question         Question[]
+  user            Users             @relation(fields: [developer_id], references: [id])
+  User_assessment User_assessment[]
+  Question        Question[]
 
   @@map("assessments")
 }
 
-model Skill_assessment {
-  user_id       String?
+model User_assessment {
+  user_id       String
   assessment_id String
   score         Int
   completed_at  DateTime
 
-  user       Users?     @relation(fields: [user_id], references: [id])
+  user       Users      @relation(fields: [user_id], references: [id])
   assessment Assessment @relation(fields: [assessment_id], references: [id])
 
   @@id([assessment_id])
@@ -201,7 +206,7 @@ model Skill_assessment {
 }
 
 model Question {
-  id            Int    @id
+  id            Int    @id @default(autoincrement())
   assessment_id String
   question      String @db.Text
 
@@ -218,7 +223,7 @@ enum Answer_status {
 }
 
 model Answer {
-  id          Int           @id
+  id          Int           @id @default(autoincrement())
   question_id Int
   answer      String        @db.Text
   status      Answer_status @default(wrong)
