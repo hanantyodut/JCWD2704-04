@@ -10,6 +10,8 @@ import express, {
 import cors from 'cors';
 import { PORT } from './config/config';
 import userRouter from './routers/user.router';
+import jobRouter from './routers/job.router';
+import assessmentRouter from './routers/assessment.router';
 
 export default class App {
   private app: Express;
@@ -55,6 +57,8 @@ export default class App {
       res.send(`Hello, Purwadhika Student API!`);
     });
     this.app.use('/users', userRouter.getRouter());
+    this.app.use('/job', jobRouter.getRouter());
+    this.app.use('/as', assessmentRouter.getRouter());
   }
 
   public start(): void {

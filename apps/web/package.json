@@ -20,13 +20,15 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "autoprefixer": "^10.4.19",
     "css": "^3.0.0",
     "cypress": "^13.6.2",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
+    "postcss": "^8.4.39",
     "prettier-plugin-tailwindcss": "^0.5.14",
-    "tailwindcss": "^3.4.1",
     "tailwind": "^4.0.0",
+    "tailwindcss": "^3.4.4",
     "typescript": "^5"
   }
 }
