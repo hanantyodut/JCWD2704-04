@@ -6,6 +6,6 @@ export type TAssessment = {
   developer_id: string;
   title: string;
   created_at: Date;
-  question: TQuestion[];
+  question?: TQuestion[];
   user_assessment?: TUserAssessment[] | undefined;
 };

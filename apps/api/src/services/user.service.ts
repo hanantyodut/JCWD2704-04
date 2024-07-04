@@ -1,11 +1,11 @@
 import { prisma } from '@/libs/prisma';
-import { TAssessment } from '@/models/assessments_fiture/assessment.model';
+import { TUser } from '@/models/user.model';
 import { Request } from 'express';
 
-class AssessmentServices {
+class UserServices {
   async create(req: Request) {}
   async getAll(req: Request) {
-    const data: TAssessment[] = await prisma.assessment.findMany();
+    const data: TUser[] = await prisma.users.findMany();
     return data;
   }
   async getById(req: Request) {}
@@ -13,4 +13,4 @@ class AssessmentServices {
   async delete(req: Request) {}
 }
 
-export default new AssessmentServices();
+export default new UserServices();

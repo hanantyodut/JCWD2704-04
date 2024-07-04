@@ -6,10 +6,10 @@ export type TUser = {
   email: string;
   password: string;
   fullname: string;
-  gender?: Gender;
+  gender?: Gender | null;
   personal_summary?: string;
   role: Role;
-  phone_no: string;
+  phone_no?: string | null;
   id_card?: string | null;
   address?: string | null;
   date_of_birth?: Date | null;
